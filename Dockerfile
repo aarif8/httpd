@@ -1,4 +1,4 @@
-FROM 		centos:latest
+FROM 		centos:7
 
 MAINTAINER 	aarif@ilg.cat
 
@@ -7,4 +7,7 @@ RUN 		yum install httpd net-tools -y && yum clean all
 
 EXPOSE 		80
 
-CMD		httpd -D FOREGROUND
+ADD run-httpd.sh /run-httpd.sh
+RUN chmod -v +x /run-httpd.sh
+
+CMD ["/run-httpd.sh"]
